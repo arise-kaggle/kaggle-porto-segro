@@ -9,7 +9,7 @@
     ],
     "lgbm_params": {
         "learning_rate": 0.1,
-        "num_leaves": 8,
+        "num_leaves": 16,
         "boosting_type": "gbdt",
         "colsample_bytree": 0.65,
         "reg_alpha": 1,
