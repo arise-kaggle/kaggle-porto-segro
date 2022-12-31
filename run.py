@@ -73,8 +73,8 @@ sub = pd.DataFrame(pd.read_csv('./data/input/test.csv')[ID_name])
 
 y_sub = sum(y_preds) / len(y_preds)
 
-if y_sub.shape[1] > 1:
-    y_sub = np.argmax(y_sub, axis=1)
+# if y_sub.shape[1] > 1:
+#     y_sub = np.argmax(y_sub, axis=1)
 
 sub[target_name] = y_sub
 
