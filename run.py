@@ -9,6 +9,8 @@ import numpy as np
 from utils import load_datasets, load_target
 from logs.logger import log_best
 from models.lgbm import train_and_predict
+from sklearn.model_selection import StratifiedKFold
+
 
 
 parser = argparse.ArgumentParser()
@@ -36,8 +38,8 @@ models = []
 
 lgbm_params = config['lgbm_params']
 
-kf = KFold(n_splits=3, random_state=0)
-for train_index, valid_index in kf.split(X_train_all):
+kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1991)
+for train_index, valid_index in kf.split(X_train_all, y_train_all):
     X_train, X_valid = (
         X_train_all.iloc[train_index, :], X_train_all.iloc[valid_index, :]
     )
