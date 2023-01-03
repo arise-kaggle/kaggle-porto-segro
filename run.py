@@ -7,8 +7,9 @@ import json
 import numpy as np
 
 from utils import load_datasets, load_target
-from logs.logger import log_best
-from models.lgbm import train_and_predict
+from logs.logger import log_best, log_best_xgb
+# from models.lgbm import train_and_predict
+from models.xgboost import train_and_predict
 from sklearn.model_selection import StratifiedKFold
 
 
@@ -36,7 +37,7 @@ logging.debug(X_train_all.shape)
 y_preds = []
 models = []
 
-lgbm_params = config['lgbm_params']
+params = config['params']
 
 kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1991)
 for train_index, valid_index in kf.split(X_train_all, y_train_all):
@@ -47,7 +48,7 @@ for train_index, valid_index in kf.split(X_train_all, y_train_all):
 
     # lgbmの実行
     y_pred, model = train_and_predict(
-        X_train, X_valid, y_train, y_valid, X_test, lgbm_params
+        X_train, X_valid, y_train, y_valid, X_test, params
     )
 
     # 結果の保存
@@ -55,11 +56,12 @@ for train_index, valid_index in kf.split(X_train_all, y_train_all):
     models.append(model)
 
     # スコア
-    log_best(model, config['loss'])
+    log_best_xgb(model, config['loss'])
 
 # CVスコア
 scores = [
-    m.best_score['valid_0'][config['loss']] for m in models
+    # m.best_score['valid_0'][config['loss']] for m in models # for lgb
+    m.best_score for m in models
 ]
 score = sum(scores) / len(scores)
 print('===CV scores===')

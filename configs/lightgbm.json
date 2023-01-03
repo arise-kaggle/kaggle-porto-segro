@@ -4,7 +4,7 @@
         "num_missing",
         "count_cat_features"
     ],
-    "lgbm_params": {
+    "params": {
         "bagging_fraction": 0.8043696643500143,
         "feature_fraction": 0.6829323879981047,
         "lambda_l1": 0.9264555612104627,

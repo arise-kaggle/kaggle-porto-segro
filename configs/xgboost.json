@@ -1,0 +1,23 @@
+{
+    "features": [
+        "base_features",
+        "num_missing",
+        "count_cat_features"
+    ],
+    "params": {
+        "colsample_bytree": 0.8927325521002059,
+        "gamma": 9.766883037651555,
+        "max_depth": 7,
+        "min_child_weight": 6.0577898395058085,
+        "reg_alpha": 8.136089122187865,
+        "reg_lambda": 1.385119327658532,
+        "scale_pos_weight": 1.5142072116395773,
+        "subsample": 0.717425859940308,
+        "objective": "binary:logistic",
+        "learning_rate": 0.05,
+        "random_state": 1991
+    },
+    "loss": "binary_logloss",
+    "target_name": "target",
+    "ID_name": "id"
+}
